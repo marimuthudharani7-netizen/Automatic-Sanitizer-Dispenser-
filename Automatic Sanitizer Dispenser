@@ -1,0 +1,21 @@
+DISCRIPTION: The Automatic Sanitizer Dispenser uses an IR sensor to detect a hand placed near the nozzle.
+When a hand is detected, the Arduino activates a DC pump or servo motor to dispense sanitizer automatically — ensuring touch-free and hygienic operation.
+CODING:
+int sensor = 2;      // IR sensor pin
+int pump = 3;        // Motor or pump pin
+
+void setup() {
+  pinMode(sensor, INPUT);
+  pinMode(pump, OUTPUT);
+}
+
+void loop() {
+  int detect = digitalRead(sensor);
+  if (detect == LOW) {         // Hand detected
+    digitalWrite(pump, HIGH);  // Turn ON pump
+    delay(1000);               // Dispense for 1 sec
+    digitalWrite(pump, LOW);   // Turn OFF pump
+  } else {
+    digitalWrite(pump, LOW);
+  }
+}
